@@ -1,4 +1,206 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // 多语言支持
+  const translations = {
+    'zh': {
+      // 顶部区域
+      'searchPlaceholder': '搜索收藏网站...',
+      'themeToggle': '切换主题',
+      'languageToggle': '切换语言',
+      // 快速访问区
+      'quickAccessTitle': '常用网站',
+      // 分类标题
+      'internationalTitle': '国际视角',
+      'domesticTitle': '国内媒体',
+      'financeTitle': '财经资讯',
+      'learningTitle': '学习资源',
+      // 模态框
+      'addSiteTitle': '添加新网站',
+      'siteName': '网站名称',
+      'siteUrl': '网站地址',
+      'siteDescription': '简短描述',
+      'siteCategory': '分类',
+      'siteIcon': '图标',
+      'iconPlaceholder': '输入emoji或图标类名',
+      'submitBtn': '添加',
+      'closeModal': '关闭',
+      // 分类选项
+      'categoryInternational': '国际视角',
+      'categoryDomestic': '国内媒体',
+      'categoryFinance': '财经资讯',
+      'categoryLearning': '学习资源',
+      // 底部
+      'footer': '个人网站导航 © 2025',
+      'exportData': '导出数据',
+      'importData': '导入数据',
+      // 其他
+      'deleteBtn': '删除网站',
+      'addSiteBtn': '添加新网站',
+      'importSuccess': '数据导入成功！',
+      'importError': '导入失败，文件格式错误'
+    },
+    'en': {
+      // 顶部区域
+      'searchPlaceholder': 'Search bookmarked sites...',
+      'themeToggle': 'Toggle Theme',
+      'languageToggle': 'Toggle Language',
+      // 快速访问区
+      'quickAccessTitle': 'Frequently Used',
+      // 分类标题
+      'internationalTitle': 'International',
+      'domesticTitle': 'Domestic Media',
+      'financeTitle': 'Financial News',
+      'learningTitle': 'Learning Resources',
+      // 模态框
+      'addSiteTitle': 'Add New Website',
+      'siteName': 'Website Name',
+      'siteUrl': 'Website URL',
+      'siteDescription': 'Brief Description',
+      'siteCategory': 'Category',
+      'siteIcon': 'Icon',
+      'iconPlaceholder': 'Enter emoji or icon class',
+      'submitBtn': 'Add',
+      'closeModal': 'Close',
+      // 分类选项
+      'categoryInternational': 'International',
+      'categoryDomestic': 'Domestic Media',
+      'categoryFinance': 'Financial News',
+      'categoryLearning': 'Learning Resources',
+      // 底部
+      'footer': 'Personal Navigation © 2025',
+      'exportData': 'Export Data',
+      'importData': 'Import Data',
+      // 其他
+      'deleteBtn': 'Delete Site',
+      'addSiteBtn': 'Add New Site',
+      'importSuccess': 'Data imported successfully!',
+      'importError': 'Import failed, incorrect file format'
+    }
+  };
+  
+  // 当前语言
+  let currentLang = localStorage.getItem('language') || 'zh';
+  
+  // 语言切换功能
+  const updateLanguage = (lang) => {
+    currentLang = lang;
+    localStorage.setItem('language', lang);
+    
+    // 更新搜索框占位符
+    document.querySelector('.search-input').placeholder = translations[lang].searchPlaceholder;
+    
+    // 更新快速访问标题
+    document.getElementById('quick-access-title').textContent = translations[lang].quickAccessTitle;
+    
+    // 更新分类标题
+    document.getElementById('international-title').innerHTML = 
+      `<i class="fas fa-globe-asia" aria-hidden="true"></i> ${translations[lang].internationalTitle}`;
+    document.getElementById('domestic-title').innerHTML = 
+      `<i class="fas fa-flag" aria-hidden="true"></i> ${translations[lang].domesticTitle}`;
+    document.getElementById('finance-title').innerHTML = 
+      `<i class="fas fa-chart-line" aria-hidden="true"></i> ${translations[lang].financeTitle}`;
+    document.getElementById('learning-title').innerHTML = 
+      `<i class="fas fa-graduation-cap" aria-hidden="true"></i> ${translations[lang].learningTitle}`;
+    
+    // 更新模态框文本
+    document.getElementById('modal-title').textContent = translations[lang].addSiteTitle;
+    document.querySelector('label[for="site-name"]').textContent = translations[lang].siteName;
+    document.querySelector('label[for="site-url"]').textContent = translations[lang].siteUrl;
+    document.querySelector('label[for="site-description"]').textContent = translations[lang].siteDescription;
+    document.querySelector('label[for="site-category"]').textContent = translations[lang].siteCategory;
+    document.querySelector('label[for="site-icon"]').textContent = translations[lang].siteIcon;
+    document.getElementById('site-icon').placeholder = translations[lang].iconPlaceholder;
+    document.querySelector('.btn-submit').textContent = translations[lang].submitBtn;
+    document.querySelector('.close-modal').setAttribute('aria-label', translations[lang].closeModal);
+    
+    // 更新分类选项
+    const categoryOptions = document.getElementById('site-category').options;
+    categoryOptions[0].textContent = translations[lang].categoryInternational;
+    categoryOptions[1].textContent = translations[lang].categoryDomestic;
+    categoryOptions[2].textContent = translations[lang].categoryFinance;
+    categoryOptions[3].textContent = translations[lang].categoryLearning;
+    
+    // 更新底部信息
+    const footerText = document.querySelector('.footer p');
+    footerText.innerHTML = `${translations[lang].footer} | <a href="#" id="export-data" aria-label="${translations[lang].exportData}">${translations[lang].exportData}</a> | <a href="#" id="import-data" aria-label="${translations[lang].importData}">${translations[lang].importData}</a>`;
+    
+    // 重新绑定导入导出事件
+    document.getElementById('export-data').addEventListener('click', handleExportData);
+    document.getElementById('import-data').addEventListener('click', handleImportData);
+    
+    // 更新删除按钮的aria-label
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.setAttribute('aria-label', translations[lang].deleteBtn);
+    });
+    
+    // 更新添加按钮的aria-label
+    document.getElementById('add-site-btn').setAttribute('aria-label', translations[lang].addSiteBtn);
+    
+    // 更新语言切换按钮文本
+    const langToggle = document.querySelector('.language-toggle');
+    langToggle.innerHTML = lang === 'zh' ? '<i class="fas fa-language"></i> EN' : '<i class="fas fa-language"></i> 中';
+  };
+  
+  // 初始化语言
+  const initLanguage = (lang) => {
+    currentLang = lang;
+    localStorage.setItem('language', lang);
+    
+    // 更新搜索框占位符
+    document.querySelector('.search-input').placeholder = translations[lang].searchPlaceholder;
+    
+    // 更新快速访问标题
+    document.getElementById('quick-access-title').textContent = translations[lang].quickAccessTitle;
+    
+    // 更新分类标题
+    document.getElementById('international-title').innerHTML = 
+      `<i class="fas fa-globe-asia" aria-hidden="true"></i> ${translations[lang].internationalTitle}`;
+    document.getElementById('domestic-title').innerHTML = 
+      `<i class="fas fa-flag" aria-hidden="true"></i> ${translations[lang].domesticTitle}`;
+    document.getElementById('finance-title').innerHTML = 
+      `<i class="fas fa-chart-line" aria-hidden="true"></i> ${translations[lang].financeTitle}`;
+    document.getElementById('learning-title').innerHTML = 
+      `<i class="fas fa-graduation-cap" aria-hidden="true"></i> ${translations[lang].learningTitle}`;
+    
+    // 更新模态框文本
+    document.getElementById('modal-title').textContent = translations[lang].addSiteTitle;
+    document.querySelector('label[for="site-name"]').textContent = translations[lang].siteName;
+    document.querySelector('label[for="site-url"]').textContent = translations[lang].siteUrl;
+    document.querySelector('label[for="site-description"]').textContent = translations[lang].siteDescription;
+    document.querySelector('label[for="site-category"]').textContent = translations[lang].siteCategory;
+    document.querySelector('label[for="site-icon"]').textContent = translations[lang].siteIcon;
+    document.getElementById('site-icon').placeholder = translations[lang].iconPlaceholder;
+    document.querySelector('.btn-submit').textContent = translations[lang].submitBtn;
+    document.querySelector('.close-modal').setAttribute('aria-label', translations[lang].closeModal);
+    
+    // 更新分类选项
+    const categoryOptions = document.getElementById('site-category').options;
+    categoryOptions[0].textContent = translations[lang].categoryInternational;
+    categoryOptions[1].textContent = translations[lang].categoryDomestic;
+    categoryOptions[2].textContent = translations[lang].categoryFinance;
+    categoryOptions[3].textContent = translations[lang].categoryLearning;
+    
+    // 更新底部信息
+    const footerText = document.querySelector('.footer p');
+    footerText.innerHTML = `${translations[lang].footer} | <a href="#" id="export-data" aria-label="${translations[lang].exportData}">${translations[lang].exportData}</a> | <a href="#" id="import-data" aria-label="${translations[lang].importData}">${translations[lang].importData}</a>`;
+    
+    // 重新绑定导入导出事件
+    document.getElementById('export-data').addEventListener('click', handleExportData);
+    document.getElementById('import-data').addEventListener('click', handleImportData);
+    
+    // 更新删除按钮的aria-label
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.setAttribute('aria-label', translations[lang].deleteBtn);
+    });
+    
+    // 更新添加按钮的aria-label
+    document.getElementById('add-site-btn').setAttribute('aria-label', translations[lang].addSiteBtn);
+    
+    // 更新语言切换按钮文本
+    const langToggle = document.querySelector('.language-toggle');
+    langToggle.innerHTML = lang === 'zh' ? '<i class="fas fa-language"></i> EN' : '<i class="fas fa-language"></i> 中';
+  };
+  
+
   // 添加结构化数据
   const structuredData = {
     "@context": "https://schema.org",
@@ -316,8 +518,8 @@ document.addEventListener('DOMContentLoaded', () => {
     addSiteForm.reset();
   });
   
-  // 导出数据
-  document.getElementById('export-data').addEventListener('click', (e) => {
+  // 导出数据处理函数
+  const handleExportData = (e) => {
     e.preventDefault();
     const dataStr = JSON.stringify(sitesData);
     const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
@@ -328,10 +530,10 @@ document.addEventListener('DOMContentLoaded', () => {
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', exportFileDefaultName);
     linkElement.click();
-  });
+  };
   
-  // 导入数据
-  document.getElementById('import-data').addEventListener('click', (e) => {
+  // 导入数据处理函数
+  const handleImportData = (e) => {
     e.preventDefault();
     
     const input = document.createElement('input');
@@ -349,9 +551,9 @@ document.addEventListener('DOMContentLoaded', () => {
           saveData();
           renderSites();
           enableCardTiltEffect();
-          alert('数据导入成功！');
+          alert(translations[currentLang].importSuccess);
         } catch (error) {
-          alert('导入失败，文件格式错误');
+          alert(translations[currentLang].importError);
         }
       };
       
@@ -359,7 +561,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     input.click();
-  });
+  };
+  
+  // 绑定导出数据事件
+  document.getElementById('export-data').addEventListener('click', handleExportData);
+  
+  // 绑定导入数据事件
+  document.getElementById('import-data').addEventListener('click', handleImportData);
   
   // 添加删除动画
   const style = document.createElement('style');
@@ -380,4 +588,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // 初始化
   loadData();
   enableCardTiltEffect();
-}); 
+  
+  // 直接添加语言切换事件监听
+  const langToggle = document.querySelector('.language-toggle');
+  if (langToggle) {
+    langToggle.addEventListener('click', () => {
+      const newLang = currentLang === 'zh' ? 'en' : 'zh';
+      updateLanguage(newLang);
+    });
+  }
+  
+  // 应用当前语言
+  updateLanguage(currentLang);
+});
