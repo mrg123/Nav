@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="个人网站导航系统 - 收藏整理常用新闻媒体、学习资源和财经资讯网站">
+  <meta name="keywords" content="网站导航,新闻媒体,学习资源,财经资讯,个人导航">
+  <meta name="author" content="mrg123">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="个人网站导航系统">
+  <meta property="og:description" content="收藏整理常用新闻媒体、学习资源和财经资讯网站">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://your-domain.com">
+  <title>个人网站导航系统 - 新闻媒体与学习资源导航</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="canonical" href="https://your-domain.com">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 顶部搜索栏 -->
+    <header class="header" role="banner">
+      <div class="logo" role="heading" aria-level="1">MediaNav</div>
+      <div class="search-container" role="search">
+        <input type="text" placeholder="搜索收藏网站..." class="search-input" aria-label="搜索网站">
+        <div class="search-icon" aria-hidden="true"><i class="fas fa-search"></i></div>
+      </div>
+      <div class="theme-toggle" role="button" aria-label="切换主题"><i class="fas fa-moon"></i></div>
+    </header>
+    
+    <!-- 快速访问区 -->
+    <section class="quick-access" aria-labelledby="quick-access-title">
+      <h2 id="quick-access-title">常用网站</h2>
+      <div class="quick-cards" role="list">
+        <a href="https://www.bbc.com/zhongwen" class="quick-card" target="_blank">
+          <div class="card-icon">🌐</div>
+          <div class="card-name">BBC中文</div>
+        </a>
+        <a href="https://www.guancha.cn/" class="quick-card" target="_blank">
+          <div class="card-icon">🔭</div>
+          <div class="card-name">观察者网</div>
+        </a>
+        <a href="https://www.bloomberg.com/asia" class="quick-card" target="_blank">
+          <div class="card-icon">🔶</div>
+          <div class="card-name">彭博社</div>
+        </a>
+        <a href="https://www.caixin.com/" class="quick-card" target="_blank">
+          <div class="card-icon">💹</div>
+          <div class="card-name">财新网</div>
+        </a>
+        <a href="https://www.thepaper.cn/" class="quick-card" target="_blank">
+          <div class="card-icon">📱</div>
+          <div class="card-name">澎湃新闻</div>
+        </a>
+      </div>
+    </section>
+    
+    <!-- 主要分类区域 -->
+    <main class="categories-container" role="main">
+      <!-- 国际媒体分类 -->
+      <section class="category" aria-labelledby="international-title">
+        <div class="category-header">
+          <h2 id="international-title"><i class="fas fa-globe-asia" aria-hidden="true"></i> 国际视角</h2>
+          <span class="category-toggle" role="button" aria-expanded="true">-</span>
+        </div>
+        <div class="sites-grid" role="list">
+          <a href="https://www.bbc.com/zhongwen" class="site-card" target="_blank">
+            <div class="site-icon">🌐</div>
+            <div class="site-info">
+              <h3>BBC中文网</h3>
+              <p>英国广播公司中文新闻</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+          <a href="https://www.bloomberg.com/asia" class="site-card" target="_blank">
+            <div class="site-icon">🔶</div>
+            <div class="site-info">
+              <h3>彭博社</h3>
+              <p>财经与全球商业新闻</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+          <a href="https://cn.reuters.com/" class="site-card" target="_blank">
+            <div class="site-icon">🌍</div>
+            <div class="site-info">
+              <h3>路透社中文</h3>
+              <p>国际新闻与时事</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+          <a href="https://cn.nytimes.com/" class="site-card" target="_blank">
+            <div class="site-icon">🗽</div>
+            <div class="site-info">
+              <h3>纽约时报中文网</h3>
+              <p>美国视角全球报道</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+        </div>
+      </section>
+      
+      <!-- 国内媒体分类 -->
+      <section class="category" aria-labelledby="domestic-title">
+        <div class="category-header">
+          <h2 id="domestic-title"><i class="fas fa-flag" aria-hidden="true"></i> 国内媒体</h2>
+          <span class="category-toggle" role="button" aria-expanded="true">-</span>
+        </div>
+        <div class="sites-grid" role="list">
+          <a href="https://www.guancha.cn/" class="site-card" target="_blank">
+            <div class="site-icon">🔭</div>
+            <div class="site-info">
+              <h3>观察者网</h3>
+              <p>中国视角国际分析</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+          <a href="https://www.thepaper.cn/" class="site-card" target="_blank">
+            <div class="site-icon">📱</div>
+            <div class="site-info">
+              <h3>澎湃新闻</h3>
+              <p>时政与社会新闻</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+          <a href="http://www.people.com.cn/" class="site-card" target="_blank">
+            <div class="site-icon">🏛️</div>
+            <div class="site-info">
+              <h3>人民日报</h3>
+              <p>官方权威信息</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+        </div>
+      </section>
+      
+      <!-- 财经资讯分类 -->
+      <section class="category" aria-labelledby="finance-title">
+        <div class="category-header">
+          <h2 id="finance-title"><i class="fas fa-chart-line" aria-hidden="true"></i> 财经资讯</h2>
+          <span class="category-toggle" role="button" aria-expanded="true">-</span>
+        </div>
+        <div class="sites-grid" role="list">
+          <a href="https://www.caixin.com/" class="site-card" target="_blank">
+            <div class="site-icon">💹</div>
+            <div class="site-info">
+              <h3>财新网</h3>
+              <p>深度财经报道</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+          <a href="https://cn.wsj.com/" class="site-card" target="_blank">
+            <div class="site-icon">📈</div>
+            <div class="site-info">
+              <h3>华尔街日报中文网</h3>
+              <p>全球金融市场动态</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+          <a href="https://www.jiemian.com/" class="site-card" target="_blank">
+            <div class="site-icon">💰</div>
+            <div class="site-info">
+              <h3>界面新闻</h3>
+              <p>财经商业资讯</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+        </div>
+      </section>
+      
+      <!-- 学习资源分类 -->
+      <section class="category" aria-labelledby="learning-title">
+        <div class="category-header">
+          <h2 id="learning-title"><i class="fas fa-graduation-cap" aria-hidden="true"></i> 学习资源</h2>
+          <span class="category-toggle" role="button" aria-expanded="true">-</span>
+        </div>
+        <div class="sites-grid" role="list">
+          <a href="https://www.coursera.org/" class="site-card" target="_blank">
+            <div class="site-icon">🎓</div>
+            <div class="site-info">
+              <h3>Coursera</h3>
+              <p>全球名校在线课程</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+          <a href="https://www.icourse163.org/" class="site-card" target="_blank">
+            <div class="site-icon">🧠</div>
+            <div class="site-info">
+              <h3>中国大学MOOC</h3>
+              <p>国内高校精品课程</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+          <a href="https://www.cnki.net/" class="site-card" target="_blank">
+            <div class="site-icon">📑</div>
+            <div class="site-info">
+              <h3>知网</h3>
+              <p>中国学术文献资源</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+          <a href="https://scholar.google.com/" class="site-card" target="_blank">
+            <div class="site-icon">🔬</div>
+            <div class="site-info">
+              <h3>Google Scholar</h3>
+              <p>学术论文搜索</p>
+            </div>
+            <div class="delete-btn" aria-label="删除网站">✗</div>
+          </a>
+        </div>
+      </section>
+    </main>
+    
+    <!-- 底部信息 -->
+    <footer class="footer" role="contentinfo">
+      <p>个人网站导航 © 2025 | <a href="#" id="export-data" aria-label="导出网站数据">导出数据</a> | <a href="#" id="import-data" aria-label="导入网站数据">导入数据</a></p>
+    </footer>
+    
+    <!-- 添加新网站的模态框 -->
+    <div class="modal" id="add-site-modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+      <div class="modal-content">
+        <span class="close-modal" role="button" aria-label="关闭">&times;</span>
+        <h2 id="modal-title">添加新网站</h2>
+        <form id="add-site-form" role="form" aria-labelledby="modal-title">
+          <div class="form-group">
+            <label for="site-name">网站名称</label>
+            <input type="text" id="site-name" required>
+          </div>
+          <div class="form-group">
+            <label for="site-url">网站地址</label>
+            <input type="url" id="site-url" required>
+          </div>
+          <div class="form-group">
+            <label for="site-description">简短描述</label>
+            <input type="text" id="site-description">
+          </div>
+          <div class="form-group">
+            <label for="site-category">分类</label>
+            <select id="site-category">
+              <option value="international">国际视角</option>
+              <option value="domestic">国内媒体</option>
+              <option value="finance">财经资讯</option>
+              <option value="learning">学习资源</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="site-icon">图标</label>
+            <input type="text" id="site-icon" placeholder="输入emoji或图标类名">
+          </div>
+          <button type="submit" class="btn-submit">添加</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <button class="add-btn" id="add-site-btn" aria-label="添加新网站">+</button>
+  
+  <script src="script.js"></script>
+</body>
+</html> 
