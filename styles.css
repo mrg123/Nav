@@ -53,6 +53,11 @@ body.light-theme {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.header-controls {
+  display: flex;
+  align-items: center;
+}
+
 .logo {
   font-size: 1.8rem;
   font-weight: 700;
@@ -95,7 +100,7 @@ body.light-theme {
   color: var(--text-dim);
 }
 
-.theme-toggle {
+.theme-toggle, .language-toggle {
   cursor: pointer;
   font-size: 1.2rem;
   width: 40px;
@@ -106,11 +111,17 @@ body.light-theme {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
   transition: var(--transition);
+  margin-left: 10px;
 }
 
-.theme-toggle:hover {
+.theme-toggle:hover, .language-toggle:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: rotate(30deg);
+}
+
+.language-toggle {
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 /* 快速访问区 */
@@ -665,4 +676,4 @@ body.light-theme {
 #add-category-modal .submit-btn:hover {
   background: #00d4e6;
   transform: translateY(-2px);
-} 
+}
