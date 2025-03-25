@@ -585,9 +585,41 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   document.head.appendChild(style);
   
+  // 为静态HTML中的删除按钮添加事件监听器
+  const addDeleteButtonListeners = () => {
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault(); // 阻止链接跳转
+        e.stopPropagation(); // 阻止事件冒泡
+        
+        const siteCard = btn.closest('.site-card');
+        const categorySection = siteCard.closest('.category');
+        const categoryId = categorySection.querySelector('h2').id.split('-')[0]; // 获取分类ID
+        const siteName = siteCard.querySelector('h3').textContent;
+        
+        // 添加删除确认动画
+        siteCard.style.animation = 'fadeOut 0.3s ease forwards';
+        
+        // 延迟删除，等待动画完成
+        setTimeout(() => {
+          // 从数据中删除
+          const index = sitesData[categoryId].findIndex(s => s.name === siteName);
+          if (index !== -1) {
+            sitesData[categoryId].splice(index, 1);
+            saveData();
+            renderSites();
+            enableCardTiltEffect();
+            addDeleteButtonListeners(); // 重新绑定事件
+          }
+        }, 300);
+      });
+    });
+  };
+  
   // 初始化
   loadData();
   enableCardTiltEffect();
+  addDeleteButtonListeners(); // 添加删除按钮事件监听
   
   // 直接添加语言切换事件监听
   const langToggle = document.querySelector('.language-toggle');
