@@ -235,7 +235,8 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: 'BBC中文网', url: 'https://www.bbc.com/zhongwen', description: '英国广播公司中文新闻', icon: '🌐' },
       { name: '彭博社', url: 'https://www.bloomberg.com/asia', description: '财经与全球商业新闻', icon: '🔶' },
       { name: '路透社中文', url: 'https://cn.reuters.com/', description: '国际新闻与时事', icon: '🌍' },
-      { name: '纽约时报中文网', url: 'https://cn.nytimes.com/', description: '美国视角全球报道', icon: '🗽' }
+      { name: '纽约时报中文网', url: 'https://cn.nytimes.com/', description: '美国视角全球报道', icon: '🗽' },
+      { name: 'Hambook', url: 'https://hambook.top/', description: 'RSS阅读器', icon: '📰' }
     ],
     domestic: [
       { name: '观察者网', url: 'https://www.guancha.cn/', description: '中国视角国际分析', icon: '🔭' },
@@ -251,7 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: 'Coursera', url: 'https://www.coursera.org/', description: '全球名校在线课程', icon: '🎓' },
       { name: '中国大学MOOC', url: 'https://www.icourse163.org/', description: '国内高校精品课程', icon: '🧠' },
       { name: '知网', url: 'https://www.cnki.net/', description: '中国学术文献资源', icon: '📑' },
-      { name: 'Google Scholar', url: 'https://scholar.google.com/', description: '学术论文搜索', icon: '🔬' }
+      { name: 'Google Scholar', url: 'https://scholar.google.com/', description: '学术论文搜索', icon: '🔬' },
+      { name: 'Draw Now', url: 'https://mrg123.com/', description: 'Draw Now绘画工具', icon: '🎨' }
     ]
   };
   
@@ -260,6 +262,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedData = localStorage.getItem('navSitesData');
     if (savedData) {
       sitesData = JSON.parse(savedData);
+      renderSites();
+    } else {
+      // 如果本地存储为空，加载默认网站数据
+      // 默认网站数据已在上方定义，直接使用
+      saveData(); // 保存默认数据到本地存储
       renderSites();
     }
   };
