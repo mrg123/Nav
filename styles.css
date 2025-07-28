@@ -124,6 +124,26 @@ body.light-theme {
   font-weight: 600;
 }
 
+/* 生命倒计时按钮样式 */
+.life-counter-toggle {
+  cursor: pointer;
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: var(--transition);
+  margin-left: 10px;
+}
+
+.life-counter-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(30deg);
+}
+
 /* 快速访问区 */
 .quick-access {
   margin-bottom: 2rem;
@@ -136,6 +156,172 @@ body.light-theme {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* 生命倒计时显示区域 */
+.life-counter-display {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.life-counter-display::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255, 165, 0, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.life-counter-display:hover::before {
+  transform: translateX(100%);
+}
+
+.life-counter-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.life-counter-icon {
+  font-size: 3rem;
+  opacity: 0.8;
+  animation: pulse 2s infinite;
+}
+
+.life-counter-info {
+  flex: 1;
+}
+
+.life-counter-info h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, var(--neon-blue), #ffa500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.life-counter-stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.counter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.counter-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.counter-label {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-top: 0.2rem;
+}
+
+.counter-separator {
+  font-size: 1.5rem;
+  color: var(--text-dim);
+  animation: blink 1s infinite;
+}
+
+.life-counter-desc {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.life-counter-edit {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  font-size: 1.1rem;
+}
+
+.life-counter-edit:hover {
+  background: rgba(255, 165, 0, 0.2);
+  color: #ffa500;
+  transform: rotate(90deg);
+}
+
+/* 生命倒计时动画 */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(0, 238, 255, 0.8);
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+/* 生命倒计时额外动画效果 */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  70% { transform: scale(1); }
+}
+
+.life-counter-icon {
+  animation: heartbeat 3s ease-in-out infinite;
+}
+
+/* 数字滚动效果 */
+.counter-value {
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.counter-value::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 238, 255, 0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 2s;
+}
+
+.counter-value:hover::before {
+  transform: translateX(100%);
 }
 
 .quick-cards {
@@ -522,6 +708,26 @@ body.light-theme {
   .sites-grid {
     grid-template-columns: 1fr;
   }
+  
+  /* 生命倒计时移动端样式 */
+  .life-counter-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .life-counter-stats {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .counter-item {
+    min-width: 80px;
+  }
+  
+  .life-counter-edit {
+    align-self: center;
+  }
 }
 
 /* 添加霓虹边框动画 */
@@ -676,4 +882,26 @@ body.light-theme {
 #add-category-modal .submit-btn:hover {
   background: #00d4e6;
   transform: translateY(-2px);
+}
+
+/* 生命倒计时模态框特殊样式 */
+.life-info {
+  background: rgba(255, 165, 0, 0.1);
+  border: 1px solid rgba(255, 165, 0, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.life-info p {
+  margin: 0;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.life-info i {
+  color: #ffa500;
 }

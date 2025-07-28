@@ -34,8 +34,35 @@
         <!-- 添加语言切换按钮 -->
         <div class="language-toggle" role="button" aria-label="切换语言"><i class="fas fa-language"></i> EN</div>
         <div class="theme-toggle" role="button" aria-label="切换主题"><i class="fas fa-moon"></i></div>
+        <!-- 添加生命倒计时按钮 -->
+        <div class="life-counter-toggle" role="button" aria-label="生命倒计时"><i class="fas fa-hourglass-half"></i></div>
       </div>
     </header>
+    
+    <!-- 生命倒计时显示区 -->
+    <section class="life-counter-display" id="life-counter-display" style="display: none;">
+      <div class="life-counter-content">
+        <div class="life-counter-icon">⏳</div>
+        <div class="life-counter-info">
+          <h3 id="life-counter-title">生命倒计时</h3>
+          <div class="life-counter-stats">
+            <div class="counter-item">
+              <span class="counter-value" id="days-left">0</span>
+              <span class="counter-label">天</span>
+            </div>
+            <div class="counter-separator">:</div>
+            <div class="counter-item">
+              <span class="counter-value" id="hours-left">0</span>
+              <span class="counter-label">小时</span>
+            </div>
+          </div>
+          <p class="life-counter-desc" id="life-counter-desc">珍惜当下，把握每一天</p>
+        </div>
+        <div class="life-counter-edit" role="button" aria-label="编辑生命倒计时">
+          <i class="fas fa-edit"></i>
+        </div>
+      </div>
+    </section>
     
     <!-- 快速访问区 -->
     <section class="quick-access" aria-labelledby="quick-access-title">
@@ -262,6 +289,54 @@
   </div>
   
   <button class="add-btn" id="add-site-btn" aria-label="添加新网站">+</button>
+  
+  <!-- 生命倒计时设置模态框 -->
+  <div class="modal" id="life-counter-modal" role="dialog" aria-labelledby="life-modal-title" aria-hidden="true">
+    <div class="modal-content">
+      <span class="close-modal" role="button" aria-label="关闭">&times;</span>
+      <h2 id="life-modal-title">生命倒计时设置</h2>
+      <form id="life-counter-form" role="form" aria-labelledby="life-modal-title">
+        <div class="form-group">
+          <label for="user-gender">性别</label>
+          <select id="user-gender" required>
+            <option value="">请选择性别</option>
+            <option value="male">男性</option>
+            <option value="female">女性</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="birth-year">出生年份</label>
+          <input type="number" id="birth-year" min="1900" max="2024" required placeholder="请输入出生年份">
+        </div>
+        <div class="form-group">
+          <label for="birth-month">出生月份</label>
+          <select id="birth-month" required>
+            <option value="">请选择月份</option>
+            <option value="1">1月</option>
+            <option value="2">2月</option>
+            <option value="3">3月</option>
+            <option value="4">4月</option>
+            <option value="5">5月</option>
+            <option value="6">6月</option>
+            <option value="7">7月</option>
+            <option value="8">8月</option>
+            <option value="9">9月</option>
+            <option value="10">10月</option>
+            <option value="11">11月</option>
+            <option value="12">12月</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="birth-day">出生日期</label>
+          <input type="number" id="birth-day" min="1" max="31" required placeholder="请输入出生日期（1-31）">
+        </div>
+        <div class="life-info">
+          <p><i class="fas fa-info-circle"></i> 男性平均寿命按79岁计算，女性平均寿命按82岁计算</p>
+        </div>
+        <button type="submit" class="btn-submit" id="life-submit-btn">开始倒计时</button>
+      </form>
+    </div>
+  </div>
   
   <script src="script.js"></script>
 </body>
